@@ -14,7 +14,7 @@ public class MasterCardGenerator extends CardGenerator{
 	private String bankId = "5";
 	private int digits = 16;
 
-	public List<MasterCard> generateMaster(int count) {
+	public List<MasterCard> generateCards(int count) {
 
 		List<MasterCard> lsCards  = new ArrayList<>();
 		while (count > 0) {

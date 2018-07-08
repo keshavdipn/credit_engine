@@ -13,16 +13,17 @@ import com.tiaa.credit.constants.Card;
 import com.tiaa.credit.domain.CreditCard;
 import com.tiaa.credit.domain.MasterCard;
 import com.tiaa.credit.generator.MasterCardGenerator;
-import com.tiaa.credit.validator.Validator;
+import com.tiaa.credit.validator.MasterCardValidator;
+import com.tiaa.credit.validator.ValidationEngine;
 
 public class ValidatorTest {
 	
 	@Ignore
 	public void testValidatorExpiryDate(){
-		Validator validator = new Validator();
+		ValidationEngine validator = new ValidationEngine();
 		MasterCardGenerator masterGen = new MasterCardGenerator();
-	
-	    List<? extends CreditCard> ls = validator.validate( masterGen.generateMaster(2));
+		 MasterCardValidator masterValidator = new MasterCardValidator(masterGen.generateCards(2));
+	    List<? extends CreditCard> ls = validator.validate( masterValidator , masterGen.generateCards(2));
 		assertNotNull(ls);
 		assertTrue(ls.size() == 2);
 		Date d = Calendar.getInstance().getTime(); 
@@ -35,16 +36,17 @@ public class ValidatorTest {
 	
 	@Test
 	public void testValidatorRemoveInvalidCards(){
-		Validator validator = new Validator();
+		ValidationEngine validator = new ValidationEngine();
 		MasterCardGenerator masterGen = new MasterCardGenerator();
-		 List ls = masterGen.generateMaster(1);
+		 MasterCardValidator masterValidator = new MasterCardValidator(masterGen.generateCards(2));
+		 List ls = masterGen.generateCards(1);
 		 MasterCard invalid = new MasterCard("123", null);
 		 ls.add(invalid);
 	
-	    ls = validator.validate( ls);
+	    ls = validator.validate(masterValidator,  ls);
 		assertNotNull(ls);
-		//assertTrue(ls.size() == 1);
-		System.out.println(ls.size());
+		assertTrue(ls.size() == 1);
+	
 		assertTrue(((CreditCard) ls.get(0)).getCardName().equalsIgnoreCase(Card.MASTERCARD.getName()));
 		
 		

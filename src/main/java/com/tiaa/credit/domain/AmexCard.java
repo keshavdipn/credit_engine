@@ -1,6 +1,6 @@
 package com.tiaa.credit.domain;
 
-import java.util.Date;
+import org.springframework.context.annotation.Bean;
 
 import com.tiaa.credit.constants.Card;
 

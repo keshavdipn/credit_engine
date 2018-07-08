@@ -21,7 +21,7 @@ public class CardGeneratorTest {
 	@Test
 	public void testAmex(){
 		AmexCardGenerator amexGen = new AmexCardGenerator();
-		List<AmexCard> ls = amexGen.generateAmex(2);
+		List<AmexCard> ls = amexGen.generateCards(2);
 		assertNotNull(ls);
 		assertTrue(ls.size() == 2);
 		assertTrue(ls.get(0).getCardNumber().startsWith("37"));
@@ -32,7 +32,7 @@ public class CardGeneratorTest {
 	@Test
 	public void testVisa(){
 		VisaCardGenerator visaGen = new VisaCardGenerator();
-		List<VisaCard> ls = visaGen.generateVisa(2);
+		List<VisaCard> ls = visaGen.generateCards(2);
 		assertNotNull(ls);
 		assertTrue(ls.size() == 2);
 		assertTrue(ls.get(0).getCardNumber().startsWith("4"));
@@ -43,7 +43,7 @@ public class CardGeneratorTest {
 	@Test
 	public void testMaster(){
 		MasterCardGenerator masterGen = new MasterCardGenerator();
-		List<MasterCard> ls = masterGen.generateMaster(2);
+		List<MasterCard> ls = masterGen.generateCards(2);
 		assertNotNull(ls);
 		assertTrue(ls.size() == 2);
 		assertTrue(ls.get(0).getCardNumber().startsWith("5"));
@@ -54,7 +54,7 @@ public class CardGeneratorTest {
 	@Test
 	public void testDiscover(){
 		DiscoverCardGenerator discoverGen = new DiscoverCardGenerator();
-		List<DiscoverCard> ls = discoverGen.generateDiscover(2);
+		List<DiscoverCard> ls = discoverGen.generateCards(2);
 		assertNotNull(ls);
 		assertTrue(ls.size() == 2);
 		assertTrue(ls.get(0).getCardNumber().startsWith("6"));

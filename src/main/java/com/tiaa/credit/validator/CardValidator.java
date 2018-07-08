@@ -11,18 +11,20 @@ import java.util.concurrent.RecursiveAction;
 import com.tiaa.credit.domain.CreditCard;
 
 
-public class CardValidator extends RecursiveAction{
+public abstract class CardValidator extends RecursiveAction{
 	
-	private List<? extends CreditCard> lsCards;
-	private int low;
-	private int high;
+	protected List<? extends CreditCard> lsCards;
 	
-	CardValidator( List<? extends CreditCard>   leftLs ){
-		this.lsCards = leftLs;
+	CardValidator(){
+		
+	}
+	
+	CardValidator( List<? extends CreditCard>   lsCards ){
+		this.lsCards = lsCards;
 		
 	}	
 
-	private boolean validate(String number) {
+	protected boolean validateLuhn(String number) {
 		
 		int sum = 0;
 		for (int i = 0; i < number.length(); i++) {
@@ -41,12 +43,14 @@ public class CardValidator extends RecursiveAction{
 		
 	}
 	
+	protected abstract boolean  validateCard(CreditCard card);
 	
-	public void validateCards(){
+	
+	protected void checkCards(){
 		Iterator<? extends CreditCard> it = lsCards.iterator();
 		while(it.hasNext()){
 			CreditCard card= it.next();
-			if(!validate(card.getCardNumber()))
+			if(!validateCard(card))
 				it.remove();
 			else
 			{
@@ -60,28 +64,15 @@ public class CardValidator extends RecursiveAction{
 		
 	}
 
+	public List<? extends CreditCard> getLsCards() {
+		return lsCards;
+	}
 
-	@Override
-	protected void compute() {
-		if(this.lsCards.size() < 100){
-			 validateCards();
-			 return ;
-		}
-			
-			int mid = lsCards.size()/2;
-			
-			List leftLs = new ArrayList(lsCards.subList(0, mid));
-			List rightLs = new ArrayList(lsCards.subList(mid+1, lsCards.size()));
-			CardValidator left = new CardValidator(leftLs);
-			CardValidator right = new CardValidator(rightLs);
-			invokeAll(left, right);	
-			lsCards.clear();
-			lsCards.addAll(leftLs);
-			lsCards.addAll(rightLs);
+	public void setLsCards(List<? extends CreditCard> lsCards) {
+		this.lsCards = lsCards;
+	}	
 		
-		}
-					
-			
+	
 		
 	
 }

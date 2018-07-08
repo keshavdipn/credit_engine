@@ -14,7 +14,7 @@ public class VisaCardGenerator extends CardGenerator {
 	private String bankId = "4";
 	private int digits = 16;
 
-	public List<VisaCard> generateVisa(int count) {
+	public List<VisaCard> generateCards(int count) {
 
 		List<VisaCard> lsCards  = new ArrayList<>();
 		while (count > 0) {

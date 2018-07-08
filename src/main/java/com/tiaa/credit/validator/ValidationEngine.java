@@ -8,18 +8,18 @@ import org.springframework.stereotype.Component;
 import com.tiaa.credit.domain.CreditCard;
 
 @Component
-public class Validator {
+public class ValidationEngine {
 
 	private ForkJoinPool pool = new ForkJoinPool(Runtime.getRuntime().availableProcessors());
-	
-	public List<? extends CreditCard> validate(List<? extends CreditCard> lsCards){
-		
-		CardValidator validators = new CardValidator(lsCards);
+
+
+	public List<? extends CreditCard> validate(CardValidator validator, List<? extends CreditCard> lsCards) {
+
+		validator.setLsCards(lsCards);
 		ForkJoinPool pool = new ForkJoinPool(Runtime.getRuntime().availableProcessors());
-	
-		pool.invoke(validators);
+
+		pool.invoke(validator);
 		return lsCards;
-		
-		
+
 	}
 }

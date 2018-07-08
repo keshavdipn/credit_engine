@@ -1,11 +1,14 @@
 package com.tiaa.credit.generator;
 
+import java.util.List;
 import java.util.Random;
 
-import org.springframework.stereotype.Component;
+import com.tiaa.credit.domain.CreditCard;
 
 
 public abstract class CardGenerator {
+	
+	public abstract List<? extends CreditCard > generateCards(int count);
 
 	protected String generate(String bin, int length) {
 
