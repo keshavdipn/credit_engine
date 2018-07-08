@@ -37,14 +37,7 @@ public class CreditServiceImpl implements CreditService {
 	
 	@Autowired 
 	private ValidationEngine validationEngine;
-	@Autowired
-	private AmexCardValidator amexValidator;	
-	@Autowired
-	private MasterCardValidator masterValidator;
-	@Autowired
-	private VisaCardValidator visaValidator;
-	@Autowired
-	private DiscoverCardValidator discoverValidator;	
+	
 	@Autowired 
 	private CardGenerationEngine generationEngine;
 	
@@ -54,22 +47,22 @@ public class CreditServiceImpl implements CreditService {
 		
 		if(cardName.equalsIgnoreCase(Card.VISA.getName())){			
 			ls =  generationEngine.process(visaGenerator, count);	
-			validationEngine.validate(visaValidator ,ls);
+			validationEngine.validate(new VisaCardValidator() ,ls);
 			return ls;
 		}
 		else if(cardName.equalsIgnoreCase(Card.MASTERCARD.getName())){
 			ls =  generationEngine.process(masterGenerator, count);
-			validationEngine.validate(masterValidator ,ls);
+			validationEngine.validate(new MasterCardValidator() ,ls);
 			return ls;
 		}
 		else if(cardName.equalsIgnoreCase(Card.AMERICANEXPRESS.getName())){
 			ls =  generationEngine.process(amexGenerator, count);
-			validationEngine.validate(amexValidator ,ls);
+			validationEngine.validate(new AmexCardValidator() ,ls);
 			return ls;
 		}
 		else if(cardName.equalsIgnoreCase(Card.DISCOVER.getName())){
 			ls =  generationEngine.process(discoverGenerator, count);
-			validationEngine.validate(discoverValidator ,ls);
+			validationEngine.validate(new DiscoverCardValidator() ,ls);
 			return ls;
 		}
 		else{

@@ -16,7 +16,7 @@ public class ValidationEngine {
 	public List<? extends CreditCard> validate(CardValidator validator, List<? extends CreditCard> lsCards) {
 
 		validator.setLsCards(lsCards);
-		ForkJoinPool pool = new ForkJoinPool(Runtime.getRuntime().availableProcessors());
+		
 
 		pool.invoke(validator);
 		return lsCards;

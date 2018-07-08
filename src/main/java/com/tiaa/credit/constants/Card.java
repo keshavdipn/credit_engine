@@ -2,15 +2,13 @@ package com.tiaa.credit.constants;
 
 public enum Card {
 
-	VISA("Visa", "4"), MASTERCARD("Master", "5"), AMERICANEXPRESS("Amex", "37"), DISCOVER("Discover", "6");
+	VISA("Visa"), MASTERCARD("Master"), AMERICANEXPRESS("Amex"), DISCOVER("Discover");
 
 	private String name;
-	private String bankId;
 
-	private Card(String name, String bankId) {
+	private Card(String name) {
 
 		this.name = name;
-		this.bankId = bankId;
 
 	}
 
@@ -20,14 +18,6 @@ public enum Card {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getBankId() {
-		return bankId;
-	}
-
-	public void setBankId(String bankId) {
-		this.bankId = bankId;
 	}
 
 }

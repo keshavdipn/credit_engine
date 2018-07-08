@@ -13,7 +13,7 @@ public class DiscoverCardValidator extends CardValidator{
 
 	private String bankId = "6";
 	private int digits = 16;
-	DiscoverCardValidator(){
+	public DiscoverCardValidator(){
 		
 	}
 	

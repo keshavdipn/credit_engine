@@ -14,7 +14,7 @@ public class VisaCardValidator extends CardValidator{
 	private String bankId = "4";
 	private int digits = 16;
 	
-	VisaCardValidator(){
+	public VisaCardValidator(){
 		
 	}
 	public VisaCardValidator(List<? extends CreditCard> lsCards) {

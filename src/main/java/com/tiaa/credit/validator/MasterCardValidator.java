@@ -13,7 +13,7 @@ public class MasterCardValidator extends CardValidator{
 
 	private String bankId = "5";
 	private int digits = 16;
-	MasterCardValidator(){
+	public MasterCardValidator(){
 		
 	}
 	
