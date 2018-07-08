@@ -16,7 +16,7 @@ import com.tiaa.credit.exception.InvalidRequestException;
 public class ControllerAdvise {
 	
 	
-	@ExceptionHandler(Exception.class)
+	@ExceptionHandler(InvalidRequestException.class)
 	@ResponseStatus(value= HttpStatus.BAD_REQUEST)
 	@ResponseBody
 	public ErrorInfo handleBadRequest(HttpRequest request , InvalidRequestException exception){
